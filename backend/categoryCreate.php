@@ -13,18 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="index.html">Starlight</a>
-        <span class="breadcrumb-item active">Add Category</span>
+        <span class="breadcrumb-item active">Create Category</span>
     </nav>
 
     <div class="sl-pagebody">
 
         <div class="sl-page-title text-center text-uppercase">
-            <h5>Add Category Form</h5>
+            <h5>Create Category Form</h5>
             <!-- <p>Category and more.</p> -->
         </div><!-- sl-page-title -->
 
         <div class="card pd-20 pd-sm-40 form-layout form-layout-4">
-            <form method="post" action="categoryAdd.php" data-parsley-validate>
+            <form method="post" action="categoryCreate.php" data-parsley-validate>
                 <div class="row">
                     <label class="col-sm-2 form-control-label">Category Name: <span class="tx-danger">*</span></label>
                     <div class="col-sm-10 mg-t-10 mg-sm-t-0">

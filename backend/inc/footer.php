@@ -25,7 +25,9 @@
 <script src="assets/lib/Flot/jquery.flot.pie.js"></script>
 <script src="assets/lib/Flot/jquery.flot.resize.js"></script>
 <script src="assets/lib/flot-spline/jquery.flot.spline.js"></script>
-
+<script src="assets/lib/datatables-responsive/dataTables.responsive.js"></script>
+<script src="assets/lib/datatables/jquery.dataTables.js"></script>
+<script src="assets/lib/highlightjs/highlight.pack.js"></script>
 <script src="assets/js/starlight.js"></script>
 <script src="assets/js/ResizeSensor.js"></script>
 <script src="assets/js/dashboard.js"></script>
@@ -42,8 +44,26 @@
   })
 </script> -->
 
+<script>
+  $('#datatable1').DataTable({
+    responsive: true,
+    language: {
+      searchPlaceholder: 'Search...',
+      sSearch: '',
+      lengthMenu: '_MENU_ items/page',
+    }
+  });
 
-
+  $('.delete-button').on('click', function(e) {
+    var id = $(this).attr('data-id');
+    $('#trash_id').val(id);
+  });
+  // $(".confirm-delete").on('click', function(e) {
+  //   var newId = $(this).attr('data-id');
+  //   console.log(newId);
+  //   location.href = "category.php?id="+newId;
+  // });
+</script>
 </body>
 
 

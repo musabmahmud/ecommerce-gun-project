@@ -48,6 +48,8 @@ header("Cache-Control: max-age=2592000");
   <link href="assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link href="assets/lib/Ionicons/css/ionicons.css" rel="stylesheet">
   <link href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+  <link href="assets/lib/highlightjs/github.css" rel="stylesheet">
+  <link href="assets/lib/datatables/jquery.dataTables.css" rel="stylesheet">
   <link href="assets/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
 
   <!-- Starlight CSS -->
@@ -66,16 +68,18 @@ header("Cache-Control: max-age=2592000");
       </span><!-- input-group-btn -->
     </div><!-- input-group -->
 
+    <?php $activePage = basename($_SERVER['PHP_SELF'], ".php"); ?>
+
     <label class="sidebar-label">Navigation</label>
     <div class="sl-sideleft-menu">
-      <a href="index.html" class="sl-menu-link active">
+      <a href="dashboard.php" class="sl-menu-link <?= ($activePage == 'dashboard') ? 'active' : ''; ?>">
         <div class="sl-menu-item">
           <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
           <span class="menu-item-label">Dashboard</span>
         </div><!-- menu-item -->
       </a><!-- sl-menu-link -->
 
-      <a href="#" class="sl-menu-link">
+      <a href="#" class="sl-menu-link <?= ($activePage == 'category' || $activePage == 'categoryCreate'|| $activePage == 'categoryEdit'|| $activePage == 'categoryUpdate' || $activePage == 'categoryTrash') ? 'active show-sub' : ''; ?>">
         <div class="sl-menu-item">
           <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
           <span class="menu-item-label">Category</span>
@@ -83,11 +87,9 @@ header("Cache-Control: max-age=2592000");
         </div><!-- menu-item -->
       </a><!-- sl-menu-link -->
       <ul class="sl-menu-sub nav flex-column">
-        <li class="nav-item"><a href="chart-sparkline.html" class="nav-link">Categories</a></li>
-        <li class="nav-item"><a href="categoryAdd.php" class="nav-link">Category Add</a></li>
-        <li class="nav-item"><a href="" class="nav-link">Category Edit</a></li>
-        <li class="nav-item"><a href="chart-chartjs.html" class="nav-link">Category Update</a></li>
-        <li class="nav-item"><a href="chart-rickshaw.html" class="nav-link">Category Delete</a></li>
+        <li class="nav-item"><a href="category.php" class="nav-link <?= ($activePage == 'category') ? 'active' : ''; ?>">Categories</a></li>
+        <li class="nav-item"><a href="categoryCreate.php" class="nav-link <?= ($activePage == 'categoryCreate') ? 'active' : ''; ?>">Category Create</a></li>
+        <li class="nav-item"><a href="categoryTrash.php" class="nav-link <?= ($activePage == 'categoryTrash') ? 'active' : ''; ?>">Category Trash</a></li>
       </ul>
       <a href="#" class="sl-menu-link">
         <div class="sl-menu-item">
