@@ -9,7 +9,7 @@ if (!isset($_GET['brandId']) || $_GET['brandId'] == NULL) {
     $brandId = $_GET['brandId'];
 }
 //database object creation
-$brand = new brand();
+$brand = new Brand();
 
 //request to database
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

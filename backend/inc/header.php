@@ -50,6 +50,7 @@ header("Cache-Control: max-age=2592000");
   <link href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
   <link href="assets/lib/highlightjs/github.css" rel="stylesheet">
   <link href="assets/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+  <link href="assets/lib/select2/css/select2.min.css" rel="stylesheet">
   <link href="assets/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
 
   <!-- Starlight CSS -->
@@ -78,6 +79,20 @@ header("Cache-Control: max-age=2592000");
           <span class="menu-item-label">Dashboard</span>
         </div><!-- menu-item -->
       </a><!-- sl-menu-link -->
+
+      
+      <a href="#" class="sl-menu-link <?= ($activePage == 'product' || $activePage == 'productCreate' || $activePage == 'productEdit' || $activePage == 'productUpdate' || $activePage == 'productTrash') ? 'active show-sub' : ''; ?>">
+        <div class="sl-menu-item">
+          <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+          <span class="menu-item-label">Products</span>
+          <i class="menu-item-arrow fa fa-angle-down"></i>
+        </div><!-- menu-item -->
+      </a><!-- sl-menu-link -->
+      <ul class="sl-menu-sub nav flex-column">
+        <li class="nav-item"><a href="product.php" class="nav-link <?= ($activePage == 'product') ? 'active' : ''; ?>">Products</a></li>
+        <li class="nav-item"><a href="productCreate.php" class="nav-link <?= ($activePage == 'productCreate') ? 'active' : ''; ?>">Product Create</a></li>
+        <li class="nav-item"><a href="productTrash.php" class="nav-link <?= ($activePage == 'productTrash') ? 'active' : ''; ?>">Product Trash</a></li>
+      </ul>
 
       <a href="#" class="sl-menu-link <?= ($activePage == 'brand' || $activePage == 'brandCreate' || $activePage == 'brandEdit' || $activePage == 'brandUpdate' || $activePage == 'brandTrash') ? 'active show-sub' : ''; ?>">
         <div class="sl-menu-item">

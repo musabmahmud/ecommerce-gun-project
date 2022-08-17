@@ -28,6 +28,8 @@
 <script src="assets/lib/datatables-responsive/dataTables.responsive.js"></script>
 <script src="assets/lib/datatables/jquery.dataTables.js"></script>
 <script src="assets/lib/highlightjs/highlight.pack.js"></script>
+<script src="assets/lib/select2/js/select2.min.js"></script>
+<script src="assets/lib/parsleyjs/parsley.js"></script>
 <script src="assets/js/starlight.js"></script>
 <script src="assets/js/ResizeSensor.js"></script>
 <script src="assets/js/dashboard.js"></script>
@@ -58,11 +60,12 @@
     var id = $(this).attr('data-id');
     $('#trash_id').val(id);
   });
-  // $(".confirm-delete").on('click', function(e) {
-  //   var newId = $(this).attr('data-id');
-  //   console.log(newId);
-  //   location.href = "category.php?id="+newId;
-  // });
+
+  $('.select2').select2({
+    minimumResultsForSearch: Infinity
+  });
+
+  $('#selectForm').parsley();
 </script>
 </body>
 

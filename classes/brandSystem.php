@@ -2,7 +2,7 @@
 include_once '../lib/database.php';
 include_once '../lib/format.php';
 
-class brand
+class Brand
 {
     private $db;
     private $fm;

@@ -2,7 +2,7 @@
 include('../classes/brandSystem.php');
 include('inc/header.php');
 
-$brand = new brand();
+$brand = new Brand();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $brandName = $_POST['brandName'];
 
