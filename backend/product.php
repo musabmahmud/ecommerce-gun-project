@@ -1,5 +1,5 @@
 <?php
-include('../classes/productSystem.php');
+include('../classes/Product.php');
 include_once '../lib/format.php';
 include('inc/header.php');
 
@@ -69,8 +69,7 @@ $productList = $product->productList();
                             <th>Long Des</th>
                             <th>Created</th>
                             <th>Gallery</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Modify</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +85,7 @@ $productList = $product->productList();
                                     <td><?= $product['productInStock'] ?></td>
                                     <td><?= $product['categoryName'] ?></td>
                                     <td><?= $product['brandName'] ?></td>
-                                    <td><img src="../assets/images/products/<?= $product['productImage'] ?>" alt="<?= $product['productName'] ?>" width="100" height="100"></td>
+                                    <td><img src="../frontend/assets/images/products/<?= $product['productImage'] ?>" alt="<?= $product['productName'] ?>" width="100" height="100"></td>
                                     <td><?= $product['productPrice'] ?></td>
                                     <td><?= $product['productOfferPrice'] ?></td>
                                     <td><?= $format->textShorten($product['productShortDes']) ?></td>
@@ -102,9 +101,9 @@ $productList = $product->productList();
                                         ?>
                                     </td>
                                     <td><a href="?productId=<?= $product['productId']; ?>" class="btn btn-info">View</a></td>
-                                    <td><a href="productUpdate.php?productId=<?= $product['productId']; ?>" class="btn btn-warning">Edit</a></td>
-                                    <td>
-                                        <a data-id="<?= $product['productId']; ?>" class="btn btn-danger delete-button text-white" data-toggle="modal" data-target="#modaldemo2">Trash</a>
+                                    <td><a href="productUpdate.php?productId=<?= $product['productId']; ?>" class="btn btn-warning mg-b-10">Edit</a>
+                                        <br>
+                                    <a data-id="<?= $product['productId']; ?>" class="btn btn-danger delete-button text-white" data-toggle="modal" data-target="#modaldemo2">Trash</a>
                                     </td>
                                 </tr>
                         <?php

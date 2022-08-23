@@ -1,5 +1,5 @@
 <?php
-include('../classes/productSystem.php');
+include('../classes/Product.php');
 include_once '../lib/format.php';
 include('inc/header.php');
 
@@ -98,7 +98,7 @@ $productList = $product->productTrashList();
                                     <td><?= $product['productInStock'] ?></td>
                                     <td><?= $product['categoryName'] ?></td>
                                     <td><?= $product['productName'] ?></td>
-                                    <td><img src="../assets/images/products/<?= $product['productImage'] ?>" alt="<?= $product['productName'] ?>" width="100" height="100"></td>
+                                    <td><img src="../frontend/assets/images/products/<?= $product['productImage'] ?>" alt="<?= $product['productName'] ?>" width="100" height="100"></td>
                                     <td><?= $product['productPrice'] ?></td>
                                     <td><?= $product['productOfferPrice'] ?></td>
                                     <td><?= $format->textShorten($product['productShortDes']) ?></td>

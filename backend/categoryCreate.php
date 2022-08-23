@@ -1,5 +1,5 @@
 <?php
-include('../classes/categorySystem.php');
+include('../classes/Category.php');
 include('inc/header.php');
 
 $category = new Category();

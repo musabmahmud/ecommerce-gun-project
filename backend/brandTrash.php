@@ -1,5 +1,5 @@
 <?php
-include('../classes/brandSystem.php');
+include('../classes/Brand.php');
 include('inc/header.php');
 
 $brand = new Brand();

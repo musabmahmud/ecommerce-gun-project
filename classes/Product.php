@@ -63,7 +63,7 @@ class Product
                 if (in_array($file_ext, $allow_format) && $file_size < 500000000) {
 
                     $unique_image = $productCode . '-' . date("d-m-y") . '-' . substr(md5(10), 0, 10) . '.' . $file_ext;
-                    $uploded_image = "../assets/images/products/" . $unique_image;
+                    $uploded_image = "../frontend/assets/images/products/" . $unique_image;
 
                     $pdInsert = "INSERT INTO products(productName,slug,productCode,productInStock,categoryId,brandId,
                     productImage,
@@ -182,7 +182,7 @@ class Product
 
                 if (in_array($file_ext, $allow_format) && $file_size < 500000000) {
                     $unique_image = $productCode . '-' . date("d-m-y") . '-' . substr(md5(10), 0, 10) . '.' . $file_ext;
-                    $uploded_image = "../assets/images/products/" . $unique_image;
+                    $uploded_image = "../frontend/assets/images/products/" . $unique_image;
 
                     $imageUpdate = "UPDATE products SET productImage = '$unique_image' WHERE productId = '$productId'";
                     $imageUpdateQuery = $this->db->update($imageUpdate);
@@ -239,7 +239,7 @@ class Product
         if ($featchData) {
             $delQuery = "DELETE FROM products WHERE productId = '$productId'";
             $deleteQS = $this->db->delete($delQuery);
-            $delete_image = "../assets/images/products/" . $featchData['productImage'];
+            $delete_image = "../frontend/assets/images/products/" . $featchData['productImage'];
             unlink($delete_image);
             $pdMsg = "Product Deleted Successfully!";
             return $pdMsg;

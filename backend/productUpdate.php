@@ -1,7 +1,7 @@
 <?php
-include('../classes/productSystem.php');
-include('../classes/categorySystem.php');
-include('../classes/brandSystem.php');
+include('../classes/Product.php');
+include('../classes/Category.php');
+include('../classes/Brand.php');
 include('inc/header.php');
 
 if (!isset($_GET['productId']) || $_GET['productId'] == NULL) {
@@ -127,7 +127,7 @@ $brandList = $brand->brandList();
                     </div><!-- col end-->
 
                     <div class="col-md-4 mg-b-10">
-                        <img id="image" src="../assets/images/products/<?= $pd['productImage'] ?>" width="100" height="100">
+                        <img id="image" src="../frontend/assets/images/products/<?= $pd['productImage'] ?>" width="100" height="100">
                     </div>
 
                     <div class="col-md-6 mg-b-10">

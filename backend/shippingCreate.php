@@ -1,64 +1,52 @@
 <?php
-include('../classes/Brand.php');
+include('../classes/shipping.php');
 include('inc/header.php');
 
-if (!isset($_GET['brandId']) || $_GET['brandId'] == NULL) {
-    echo "<script>window.location = 'brand.php';</script>";
-    // header("Location : brand.php");
-} else {
-    $brandId = $_GET['brandId'];
-}
-//database object creation
-$brand = new Brand();
-
-//request to database
+$shipping = new Shipping();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    $brandId = $_POST['brandId'];
-    $brandName = $_POST['brandName'];
-    $brandUpdate = $brand->brandUpdate($brandId, $brandName);
+    $shippingInsert = $shipping->shippingAdd($_POST);
 }
-
-// fetch data
-$getbrand = $brand->getByID($brandId);
 ?>
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="index.html">Starlight</a>
-        <span class="breadcrumb-item active">Edit brand <?= $getbrand['brandName'] ?></span>
+        <span class="breadcrumb-item active">Create shipping</span>
     </nav>
 
     <div class="sl-pagebody">
 
         <div class="sl-page-title text-center text-uppercase">
-            <h5>Update brand Form</h5>
-            <!-- <p>brand and more.</p> -->
+            <h5>Create shipping Form</h5>
+            <!-- <p>shipping and more.</p> -->
         </div><!-- sl-page-title -->
 
         <div class="card pd-20 pd-sm-40 form-layout form-layout-4">
-            <form method="post" action="brandUpdate.php" data-parsley-validate>
-
-                <input type="hidden" name="brandId" value="<?= $getbrand['brandId'] ? $getbrand['brandId'] : ''; ?>">
+            <form method="post" action="shippingCreate.php" data-parsley-validate>
                 <div class="row">
-                    <label class="col-sm-2 form-control-label">brand Name: <span class="tx-danger">*</span></label>
+                    <label class="col-sm-2 form-control-label">City Name: <span class="tx-danger">*</span></label>
                     <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                        <input type="text" class="form-control" placeholder="Enter brand Name" name="brandName" value="<?= $getbrand['brandName'] ? $getbrand['brandName'] : ''; ?>">
+                        <input type="text" class="form-control" placeholder="Enter shipping City" name="city">
+                    </div>
+                    <label class="col-sm-2 form-control-label">Shipping Cost: <span class="tx-danger">*</span></label>
+                    <div class="col-sm-10 mg-t-10 mg-sm-t-0">
+                        <input type="text" class="form-control" placeholder="Enter shipping Cost" name="shippingCost">
                     </div>
                 </div><!-- row -->
-                <?php if (isset($brandUpdate)) { ?>
+                <?php if (isset($shippingInsert)) { ?>
                     <div class="alert alert-danger text-center mg-t-5" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <?= $brandUpdate ?>
+                        <?= $shippingInsert ?>
                     </div>
-                <?php } else if (isset($_SESSION['brandUpdated'])) { ?>
+                <?php } 
+                else if(isset($_SESSION['shippingSuccess'])) { ?>
                     <div class="alert alert-success text-center mg-t-5" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <?= $_SESSION['brandUpdated'] ?>
+                        <?= $_SESSION['shippingSuccess'] ?>
                     </div>
                 <?php  } ?>
                 <div class="form-layout-footer mg-t-30 text-center">

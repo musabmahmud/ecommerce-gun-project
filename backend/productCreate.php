@@ -1,7 +1,7 @@
 <?php
-include('../classes/productSystem.php');
-include('../classes/categorySystem.php');
-include('../classes/brandSystem.php');
+include('../classes/Product.php');
+include('../classes/Category.php');
+include('../classes/Brand.php');
 include('inc/header.php');
 
 

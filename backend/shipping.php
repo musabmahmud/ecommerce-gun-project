@@ -1,50 +1,49 @@
 <?php
-include('../classes/Category.php');
+include('../classes/shipping.php');
 include('inc/header.php');
 
-$category = new Category();
+$shipping = new Shipping();
 
 //request to database
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    $categoryId = $_POST['categoryId'];
-    $categoryTrash = $category->categoryTrash($categoryId);
+    $shippingId = $_POST['shippingId'];
+    $shippingTrash = $shipping->shippingTrash($shippingId);
 }
 
 
-$categoryList = $category->categoryList();
+$shippingList = $shipping->shippingList();
 ?>
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="index.html">Starlight</a>
-        <span class="breadcrumb-item active">Category List</span>
+        <span class="breadcrumb-item active">shipping List</span>
     </nav>
 
     <div class="sl-pagebody">
         <div class="sl-page-title text-center text-uppercase">
-            <h5>Category List</h5>
-            <!-- <p>Category and more.</p> -->
+            <h5>shipping List</h5>
+            <!-- <p>shipping and more.</p> -->
         </div><!-- sl-page-title -->
 
         <div class="card pd-20">
-            <h6 class="card-body-title">Category DataTable</h6>
+            <h6 class="card-body-title">shipping DataTable</h6>
             <p class="mg-b-20 mg-sm-b-30">Searching, ordering and paging goodness will be immediately added to the table</p>
 
-            <?php if (isset($_SESSION['categoryUpdated'])) { ?>
+            <?php if (isset($_SESSION['shippingUpdated'])) { ?>
                 <div class="alert alert-success text-center mg-t-5" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <?= $_SESSION['categoryUpdated'] ?>
+                    <?= $_SESSION['shippingUpdated'] ?>
                 </div>
             <?php  } ?>
-            <?php if (isset($_SESSION['categoryTrash'])) { ?>
+            <?php if (isset($_SESSION['shippingTrash'])) { ?>
                 <div class="alert alert-success text-center mg-t-5" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <?= $_SESSION['categoryTrash'] ?>
+                    <?= $_SESSION['shippingTrash'] ?>
                 </div>
             <?php  } ?>
 
@@ -52,24 +51,26 @@ $categoryList = $category->categoryList();
                 <table id="datatable1" class="table display responsive wrap">
                     <thead>
                         <tr>
-                            <th>Category ID</th>
-                            <th>Category Name</th>
+                            <th>shipping ID</th>
+                            <th>shipping City</th>
+                            <th>shipping Cost</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ($categoryList) {
+                        <?php if ($shippingList) {
                             $i = 0;
-                            foreach ($categoryList as $category) {
+                            foreach ($shippingList as $shipping) {
                                 $i++;
                         ?>
                                 <tr>
                                     <td><?= $i ?></td>
-                                    <td><?= $category['categoryName'] ?></td>
-                                    <td><a href="categoryUpdate.php?categoryId=<?= $category['categoryId']; ?>" class="btn btn-warning">Edit</a></td>
+                                    <td><?= $shipping['city'] ?></td>
+                                    <td><?= $shipping['shippingCost'] ?></td>
+                                    <td><a href="shippingUpdate.php?shippingId=<?= $shipping['shippingId']; ?>" class="btn btn-warning">Edit</a></td>
                                     <td>
-                                        <a data-id="<?= $category['categoryId']; ?>" class="btn btn-danger delete-button text-white" data-toggle="modal" data-target="#modaldemo2">Trash</a>
+                                        <a data-id="<?= $shipping['shippingId']; ?>" class="btn btn-danger delete-button text-white" data-toggle="modal" data-target="#modaldemo2">Trash</a>
                                     </td>
                                 </tr>
                         <?php
@@ -95,9 +96,9 @@ $categoryList = $category->categoryList();
                     <p class="mg-b-5">Wanted it into Trash </p>
                 </div>
 
-                <form action="category.php" method="post">
+                <form action="shipping.php" method="post">
                     <div class="modal-body">
-                        <input type="hidden" name="categoryId" value="" id="trash_id">
+                        <input type="hidden" name="shippingId" value="" id="trash_id">
                         <div class="modal-footer justify-content-center">
                             <button type="submit" class="btn btn-danger pd-x-20">Confirm Trash</button>
                             <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>

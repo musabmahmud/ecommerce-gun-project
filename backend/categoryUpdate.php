@@ -1,5 +1,5 @@
 <?php
-include('../classes/categorySystem.php');
+include('../classes/Category.php');
 include('inc/header.php');
 
 if (!isset($_GET['categoryId']) || $_GET['categoryId'] == NULL) {

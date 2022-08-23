@@ -80,7 +80,7 @@ header("Cache-Control: max-age=2592000");
         </div><!-- menu-item -->
       </a><!-- sl-menu-link -->
 
-      
+
       <a href="#" class="sl-menu-link <?= ($activePage == 'product' || $activePage == 'productCreate' || $activePage == 'productEdit' || $activePage == 'productUpdate' || $activePage == 'productTrash') ? 'active show-sub' : ''; ?>">
         <div class="sl-menu-item">
           <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
@@ -93,6 +93,21 @@ header("Cache-Control: max-age=2592000");
         <li class="nav-item"><a href="productCreate.php" class="nav-link <?= ($activePage == 'productCreate') ? 'active' : ''; ?>">Product Create</a></li>
         <li class="nav-item"><a href="productTrash.php" class="nav-link <?= ($activePage == 'productTrash') ? 'active' : ''; ?>">Product Trash</a></li>
       </ul>
+
+      
+      <a href="#" class="sl-menu-link <?= ($activePage == 'shipping' || $activePage == 'shippingCreate' || $activePage == 'shippingEdit' || $activePage == 'shippingUpdate' || $activePage == 'shippingTrash') ? 'active show-sub' : ''; ?>">
+        <div class="sl-menu-item">
+          <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+          <span class="menu-item-label">Shipping</span>
+          <i class="menu-item-arrow fa fa-angle-down"></i>
+        </div><!-- menu-item -->
+      </a><!-- sl-menu-link -->
+      <ul class="sl-menu-sub nav flex-column">
+        <li class="nav-item"><a href="shipping.php" class="nav-link <?= ($activePage == 'shipping') ? 'active' : ''; ?>">Shipping</a></li>
+        <li class="nav-item"><a href="shippingCreate.php" class="nav-link <?= ($activePage == 'shippingCreate') ? 'active' : ''; ?>">Shipping Create</a></li>
+        <li class="nav-item"><a href="shippingTrash.php" class="nav-link <?= ($activePage == 'shippingTrash') ? 'active' : ''; ?>">Shipping Trash</a></li>
+      </ul>
+
 
       <a href="#" class="sl-menu-link <?= ($activePage == 'brand' || $activePage == 'brandCreate' || $activePage == 'brandEdit' || $activePage == 'brandUpdate' || $activePage == 'brandTrash') ? 'active show-sub' : ''; ?>">
         <div class="sl-menu-item">
@@ -167,7 +182,8 @@ header("Cache-Control: max-age=2592000");
               <li><a href=""><i class="icon ion-ios-folder-outline"></i> Collections</a></li>
               <?php
               if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-                Session::destroy();
+                session_destroy();
+                echo "<script>window.location = 'login.php';</script>";
               }
               ?>
               <li><a href="?action=logout"><i class="icon ion-power"></i> Sign Out</a></li>
