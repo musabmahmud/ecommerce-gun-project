@@ -14,11 +14,17 @@ class Frontend
     //slider
     public function getSlider()
     {
-        $sliderQuery = "SELECT * FROM products WHERE productStatus = '1' ORDER BY productId DESC LIMIT 4";
+        $sliderQuery = "SELECT * FROM products WHERE productStatus = '1' AND productInfo = '2' ORDER BY productId DESC LIMIT 4";
         $sliderResult = $this->db->select($sliderQuery);
         return $sliderResult;
     }
     // category 
+    public function getSliderPdt()
+    {
+        $sliderQuery = "SELECT * FROM products WHERE productStatus = '1' AND productInfo = '0' ORDER BY productId DESC LIMIT 10";
+        $sliderResult = $this->db->select($sliderQuery);
+        return $sliderResult;
+    }
     public function getCat()
     {
         // $catQuery = "SELECT *, count( products.categoryId ) as productCount FROM categories LEFT JOIN products ON categories.categoryId = products.categoryId WHERE categoryStatus = 1 GROUP BY products.categoryId  ORDER BY categoryName ASC";

@@ -129,7 +129,7 @@ $pdD = $front->productDetails($slug);
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="img1">
+                        <div role="tabpanel" class="tab-pane active" id="con1">
                             <div class="con">
                                 <figure><img src="assets/images/products/<?= $pdD['productImage'] ?>" alt="<?= $pdD['productName'] ?>" /></figure>
                                 <p><?= $pdD['productShortDes'] ?></p>

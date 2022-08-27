@@ -79,10 +79,10 @@ $carts = $cart->getCart($sId);
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-                <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-            <![endif]-->
+    <!--[if lt IE 9]-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!--[endif]-->
 </head>
 
 <body>
@@ -129,11 +129,7 @@ $carts = $cart->getCart($sId);
                                         <a href="shop.php">shop</a>
                                     </li>
                                     <li>
-                                        <a href="#">blog</a>
-                                        <ul>
-                                            <li><a href="blog.php">blog page</a></li>
-                                            <li><a href="blog-single.php">blog single</a></li>
-                                        </ul>
+                                        <a href="blog.php">blog page</a>
                                     </li>
                                     <li><a href="contact.php">Contact</a></li>
                                 </ul>
@@ -150,7 +146,7 @@ $carts = $cart->getCart($sId);
                             </div>
                         </div>
                         <div class="cart-head">
-                            <button><i class="fas fa-shopping-cart"></i> <span><?= $carts ? count($carts): '' ?></span></button>
+                            <button><i class="fas fa-shopping-cart"></i> <span><?= $carts ? mysqli_num_rows($carts) : '0'; ?></span></button>
                             <div class="nav-shop-cart">
                                 <div class="widget_shopping_cart_content">
                                     <?php
@@ -200,8 +196,20 @@ $carts = $cart->getCart($sId);
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+                            session_destroy();
+                            echo "<script>window.location = 'login.php';</script>";
+                        }
+                        ?>
                         <div class="sing-in-btn">
-                            <a href="#" class="btn1">Sign in</a>
+                            <?php if (isset($_SESSION['userLogin']) == false) { ?>
+                                <a href="login.php" class="btn1">log in</a>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="?action=logout" class="btn1">Logout</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

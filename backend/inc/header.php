@@ -94,6 +94,18 @@ header("Cache-Control: max-age=2592000");
         <li class="nav-item"><a href="productTrash.php" class="nav-link <?= ($activePage == 'productTrash') ? 'active' : ''; ?>">Product Trash</a></li>
       </ul>
 
+      <a href="#" class="sl-menu-link <?= ($activePage == 'slider' || $activePage == 'sliderCreate' || $activePage == 'sliderEdit' || $activePage == 'sliderUpdate' || $activePage == 'sliderTrash') ? 'active show-sub' : ''; ?>">
+        <div class="sl-menu-item">
+          <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+          <span class="menu-item-label">Slider</span>
+          <i class="menu-item-arrow fa fa-angle-down"></i>
+        </div><!-- menu-item -->
+      </a><!-- sl-menu-link -->
+      <ul class="sl-menu-sub nav flex-column">
+        <li class="nav-item"><a href="slider.php" class="nav-link <?= ($activePage == 'slider') ? 'active' : ''; ?>">Slider</a></li>
+        <li class="nav-item"><a href="sliderCreate.php" class="nav-link <?= ($activePage == 'sliderCreate') ? 'active' : ''; ?>">Slider Create</a></li>
+        <li class="nav-item"><a href="sliderTrash.php" class="nav-link <?= ($activePage == 'sliderTrash') ? 'active' : ''; ?>">Slider Trash</a></li>
+      </ul>
       
       <a href="#" class="sl-menu-link <?= ($activePage == 'shipping' || $activePage == 'shippingCreate' || $activePage == 'shippingEdit' || $activePage == 'shippingUpdate' || $activePage == 'shippingTrash') ? 'active show-sub' : ''; ?>">
         <div class="sl-menu-item">
@@ -135,7 +147,7 @@ header("Cache-Control: max-age=2592000");
         <li class="nav-item"><a href="categoryCreate.php" class="nav-link <?= ($activePage == 'categoryCreate') ? 'active' : ''; ?>">Category Create</a></li>
         <li class="nav-item"><a href="categoryTrash.php" class="nav-link <?= ($activePage == 'categoryTrash') ? 'active' : ''; ?>">Category Trash</a></li>
       </ul>
-      <a href="mailbox.html" class="sl-menu-link">
+      <a href="mailbox.php" class="sl-menu-link">
         <div class="sl-menu-item">
           <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
           <span class="menu-item-label">Mailbox</span>
@@ -149,10 +161,10 @@ header("Cache-Control: max-age=2592000");
         </div><!-- menu-item -->
       </a><!-- sl-menu-link -->
       <ul class="sl-menu-sub nav flex-column">
-        <li class="nav-item"><a href="blank.html" class="nav-link">Blank Page</a></li>
-        <li class="nav-item"><a href="page-signin.html" class="nav-link">Signin Page</a></li>
-        <li class="nav-item"><a href="page-signup.html" class="nav-link">Signup Page</a></li>
-        <li class="nav-item"><a href="page-notfound.html" class="nav-link">404 Page Not Found</a></li>
+        <li class="nav-item"><a href="blank.php" class="nav-link">Blank Page</a></li>
+        <li class="nav-item"><a href="page-signin.php" class="nav-link">Signin Page</a></li>
+        <li class="nav-item"><a href="page-signup.php" class="nav-link">Signup Page</a></li>
+        <li class="nav-item"><a href="page-notfound.php" class="nav-link">404 Page Not Found</a></li>
       </ul>
     </div><!-- sl-sideleft-menu -->
 

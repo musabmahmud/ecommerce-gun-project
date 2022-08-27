@@ -1,6 +1,10 @@
 <?php include('inc/header.php'); ?>
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['emptyCart'])) {
+    $cartEmpty = $cart->emptyCart();
+}
+
 ?>
 
 <!--Breadcumb area start here-->
@@ -10,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="content">
-                        <h2>PRODUCT details</h2>
+                        <h2>Cart Products details</h2>
                         <ul>
                             <li><a href="index.html">Home</a></li>
                             <li><a href="javascript:void(0)">PRODUCT</a></li>
@@ -39,8 +43,18 @@
                             </button>
                             <?= $_SESSION['cartDelSuccess'] ?>
                         </div>
-                    <?php 
-                        unset($_SESSION['cartDelSuccess']); } ?>
+                    <?php
+                        unset($_SESSION['cartDelSuccess']);
+                    } ?>
+                    <?php if (isset($_SESSION['cartEmpty'])) { ?>
+                        <div class="alert alert-success text-center mg-t-5" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <?= $_SESSION['cartEmpty'] ?>
+                        </div>
+                    <?php unset($_SESSION['cartEmpty']);
+                    } ?>
                     <?php if (isset($_SESSION['cartUpSuccess'])) { ?>
                         <div class="alert alert-success text-center mg-t-5" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -48,7 +62,8 @@
                             </button>
                             <?= $_SESSION['cartUpSuccess'] ?>
                         </div>
-                    <?php unset($_SESSION['cartUpSuccess']); } ?>
+                    <?php unset($_SESSION['cartUpSuccess']);
+                    } ?>
                     <table class="table table-hover cart-table">
                         <thead>
                             <tr class="cart-head">
@@ -64,8 +79,11 @@
                         </thead>
                         <tbody>
                             <?php
+
+                            $i = 0;
+                            $sum = 0;
+                            $total = 0;
                             if ($carts) {
-                                $i = 0;
                                 foreach ($carts as $cartPd) {
                                     $i++;
                             ?>
@@ -83,11 +101,11 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>$<?= $totali = $pricei * $cartPd['quantity']; ?></td>
+                                            <td>$<?= $sum = $pricei * $cartPd['quantity']; ?></td>
                                             <td>
-                                                <button type="submit" class="btn btn-info text-white" name="updateCart">Update</button>
+                                                <button type="submit" class="btn btn-secondary text-white" name="updateCart">Update</button>
                                             </td>
-                                        </form> 
+                                        </form>
                                         <td>
                                             <form action="cart.php" method="post">
                                                 <input type="hidden" value="<?= $cartPd['cartId']; ?>" name="cartId">
@@ -95,7 +113,9 @@
                                             </form>
                                         </td>
                                     </tr>
-                                <?php }
+                                <?php
+                                    $total = $sum + $total;
+                                }
                             } else {
                                 ?>
                                 <tr>
@@ -104,6 +124,37 @@
                             <?php } ?>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <a href="shop.php" class="btn2 mg-b-20"><i class="fas fa-arrow-left"></i> Back To shop</a>
+            </div>
+            <div class="col-sm-6 text-right">
+                <form action="cart.php" method="post">
+                    <?php
+                    if ($carts) { ?><button type="submit" name="emptyCart" class="btn1">Empty Cart</button>
+                    <?php } ?>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <div class="cart-index">
+                    <div class="cart-card">
+                        <div class="cart-content">
+                            <p>subtotal</p>
+                            <p>$<?= $total ? $total : '' ?></p>
+                        </div>
+                        <div class="cart-content">
+                            <p>sales taxes</p>
+                            <p>$<?= $tax = $total*.1?></p>
+                        </div>
+                        <div class="cart-content">
+                            <p>Grand total</p>
+                            <p>$<?= $total + $tax ?></p>
+                        </div>
+                        <div class="text-right">
+                            <a href="checkout.php" class="btn btn-primary btn1">Checkout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
-<?php include('inc/header.php'); ?>
-
+<?php include('inc/header.php'); 
+Session::checkUserLogin();
+?>
 <?php
 
 $shippingList = $shipping->shippingList();
@@ -7,6 +8,10 @@ $shippingList = $shipping->shippingList();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     $customerRegister = $customer->customerRegister($_POST);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+    $customerLogin = $customer->customerLogin($_POST['email'],$_POST['password']);
 }
 
 ?>
@@ -60,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                                 </div>
                             <?php unset($customerRegister);
                             } ?>
-
                             <?php if (isset($_SESSION['CustomerSuccess'])) { ?>
                                 <div class="alert alert-success text-center mg-t-5" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -70,15 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                                 </div>
                             <?php unset($_SESSION['CustomerSuccess']);
                             } ?>
-                            <form>
+                            <form action="login.php" method="post">
                                 <fieldset>
                                     <div class="row g-4">
                                         <div class="col-sm-12 pd-b-10 mg-b-10 feld login-input">
-                                            <input type="text" placeholder="Email *">
+                                            <input type="email" name="email" placeholder="Email *">
                                             <span><i class="fa fa-envelope"></i></span>
                                         </div>
                                         <div class="col-sm-12 feld login-input">
-                                            <input type="text" placeholder="password">
+                                            <input type="password" name="password" placeholder="password">
                                             <span><i class="fa fa-lock"></i></span>
                                         </div>
                                     </div>

@@ -45,27 +45,40 @@
     $('#selectForm').parsley();
   })
 </script> -->
-
 <script>
-  $('#datatable1').DataTable({
-    responsive: true,
-    language: {
-      searchPlaceholder: 'Search...',
-      sSearch: '',
-      lengthMenu: '_MENU_ items/page',
-    }
-  });
+  $(function() {
+    'use strict';
+    $('#datatable1').DataTable({
+      responsive: true,
+      language: {
+        searchPlaceholder: 'Search...',
+        sSearch: '',
+        lengthMenu: '_MENU_ items/page',
+      }
+    });
 
-  $('.delete-button').on('click', function(e) {
-    var id = $(this).attr('data-id');
-    $('#trash_id').val(id);
-  });
+    $('.delete-button').on('click', function(e) {
+      var id = $(this).attr('data-id');
+      $('#trash_id').val(id);
+    });
 
-  $('.select2').select2({
-    minimumResultsForSearch: Infinity
-  });
+    $('.select2').select2({
+      minimumResultsForSearch: Infinity
+    });
 
-  $('#selectForm').parsley();
+    $('#selectForm').parsley();
+
+    // show only the icons and hide left menu label by default
+    $('.menu-item-label,.menu-item-arrow').addClass('op-lg-0-force d-lg-none');
+
+    // scrollbar
+    $('.mailbox-sideleft').perfectScrollbar();
+
+    // showing mailbox left menu
+    $('#showMailboxLeft').on('click', function() {
+      $('body').toggleClass('show-mailbox-left');
+    });
+  });
 </script>
 </body>
 

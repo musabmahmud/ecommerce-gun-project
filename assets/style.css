@@ -95,7 +95,6 @@ h6 {
 
 img {
   max-width: 100%;
-  height: auto;
 }
 
 ul {
@@ -2427,6 +2426,7 @@ header .main-header .cart-head .nav-shop-cart .product_list_widget {
   padding: 0px;
   line-height: 30px !important;
 }
+
 header .main-header .cart-head .nav-shop-cart .product_list_widget .cart_item {
   display: flex;
 }
@@ -7303,32 +7303,63 @@ footer .footer-top .products-foo ul li img {
   padding: 0 15px;
   margin-left: 20px;
 }
-.login-details{
+
+.login-details {
   width: 50%;
   margin: auto;
 }
 
 
-.login-details .nav-tabs{
+.login-details .nav-tabs {
   border-bottom: 0px;
   margin-bottom: 50px;
 }
 
-.login-details .nav-tabs>li{
+.login-details .nav-tabs>li {
   float: left;
   width: 50%;
   text-align: center;
 }
-.login-details .nav-tabs>li a{
+
+.login-details .nav-tabs>li a {
   background-color: #878244;
   color: #fff;
 }
 
-.login-details .nav-tabs>li.active a{
+.login-details .nav-tabs>li.active a {
   background-color: #fff;
   border-top: 1px solid #878244;
   color: #878244;
 }
-.login-input{
+
+.login-input {
   margin-bottom: 15px;
+}
+
+
+.cart-index {
+  position: relative;
+  margin-top: 20px;
+}
+
+.cart-index .cart-card {
+  display: block;
+  position: relative;
+  background: #878244;
+  padding: 40px 80px 40px 40px;
+  -webkit-clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+  z-index: 999;
+  text-align: left;
+color: #fff;
+}
+
+.cart-content{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-content p{
+  text-transform: capitalize;
+  margin-bottom: 10px;
 }

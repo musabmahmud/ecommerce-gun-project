@@ -131,7 +131,7 @@ $total_pages = ceil($total_rows / $per_page);
                                         <p><?= $fm->textShorten($shopPd['productShortDes']) ?> <span class="btn3">Read More<i class="fas fa-arrow-right"></i></span></p>
                                         <span>$<?= $shopPd['productPrice']; ?></span>
                                     </a>
-                                    <a href="#" class="btn4">Add To Cart</a>
+                                    <a href="products.php?product-name=<?= $shopPd['slug']; ?>" class="btn4">View</a>
                                 </div>
                             </div>
                     <?php }

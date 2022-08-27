@@ -32,18 +32,18 @@ class Cart
             if ($result == false) {
                 $cartInsert = "INSERT INTO carts( sId, productId, quantity ) VALUES('$sId', '$productId', '$quantity')";
                 $cartQuery = $this->db->insert($cartInsert);
-                return $cartQuery;
+                echo "<script>window.location = 'cart.php?product-name=$slug';</script>";
             } else {
                 $fetchData = $result->fetch_assoc();
                 if ($quantity == 1) {
                     $Uquantity = $fetchData['quantity'] + 1;
                     $cartUpdate = "UPDATE carts SET quantity = '$Uquantity' WHERE sId='$sId' AND productId='$productId'";
                     $cartUQuery = $this->db->update($cartUpdate);
-                    return $cartUQuery;
+                    echo "<script>window.location = 'cart.php?product-name=$slug';</script>";
                 } else {
                     $cartQUpdate = "UPDATE carts SET quantity = '$quantity' WHERE sId='$sId' AND productId='$productId'";
                     $cartQQuery = $this->db->update($cartQUpdate);
-                    return $cartQQuery;
+                    echo "<script>window.location = 'cart.php?product-name=$slug';</script>";
                 }
             }
         }
@@ -67,7 +67,7 @@ class Cart
         Session::set("cartDelSuccess", "Cart Product Deleted Successfully");
         return $delQuery;
     }
-    
+
     public function updateCart($data)
     {
         $cartId = $this->fm->validation($data['cartId']);
@@ -81,5 +81,12 @@ class Cart
         Session::set("cartUpSuccess", "Cart Product Updated Successfully");
         echo "<script>window.location = 'cart.php';</script>";
     }
-}
 
+    public function emptyCart()
+    {
+        $delCart = "TRUNCATE TABLE carts";
+        $delQuery = $this->db->delete($delCart);
+        Session::set("cartEmpty", "Cart Empty Successfully");
+        echo "<script>window.location = 'cart.php';</script>";
+    }
+}

@@ -50,8 +50,40 @@ class Customer
             }
         }
     }
+    public function customerLogin($email, $pass)
+    {
+        $email = $this->fm->validation($email);
+        $pass = $this->fm->validation($pass);
 
-    
+        $email = mysqli_real_escape_string($this->db->link, $email);
+        $pass = mysqli_real_escape_string($this->db->link, $pass);
+
+        if (empty($email)) {
+            $loginMsg = "username must not be empty!";
+            return $loginMsg;
+        } else if (empty($pass)) {
+            $loginMsg = "password must not be empty!";
+            return $loginMsg;
+        } else {
+            $query = "SELECT * FROM user WHERE email = '$email' AND password = '$pass'";
+            $result = $this->db->select($query);
+            if ($result != false) {
+                $output = $result->fetch_assoc();
+                Session::set("userLogin", true);
+                Session::set("userId", $output['userId']);
+                Session::set("name", $output['name']);
+                Session::set("email", $output['email']);
+                Session::set("shippingId", $output['shippingId']);
+                Session::set("address", $output['address']);
+                Session::set("phone", $output['phone']);
+                Session::set("zipcode", $output['zipcode']);
+                echo "<script>window.location = 'index.php';</script>";
+            } else {
+                $loginMsg = "email or password wrong!";
+                return $loginMsg;
+            }
+        }
+    }
 
 }
 
